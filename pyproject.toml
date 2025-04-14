@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["prompt_compressor/tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=prompt_compressor --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["prompt_compressor"]
+omit = ["prompt_compressor/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError"
+] 

@@ -1,0 +1,9 @@
+odatasets>=2.15.0
+spacy>=3.7.2
+tiktoken>=0.5.1
+pyyaml>=5.4.1
+typer>=0.4.0
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0.tar.gz 

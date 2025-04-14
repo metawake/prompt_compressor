@@ -1,0 +1,215 @@
+# High-efficiency compression rules
+# Optimized for maximum token reduction while preserving meaning
+
+rule_groups:
+  remove_fillers:
+    enabled: true
+    patterns:
+      - pattern: "\\b(please|thank you|just wondering|i would like to know|can you please)\\b"
+        replacement: ""
+      - pattern: "\\b(i|we|you|they)\\s+(think|believe|feel|wonder|hope|wish)\\s+that\\b"
+        replacement: ""
+      - pattern: "\\b(it|this|that)\\s+(is|was|seems)\\s+(to be|like)\\b"
+        replacement: ""
+
+  remove_greetings:
+    enabled: true
+    patterns:
+      - pattern: "\\b(hi|hello|hey|greetings|good (morning|afternoon|evening))\\b"
+        replacement: ""
+
+  strip_modifiers:
+    enabled: true
+    patterns:
+      - pattern: "\\b(really|very|quite|extremely|highly|somewhat|rather|fairly|pretty)\\s+"
+        replacement: ""
+      - pattern: "\\b(i think|honestly speaking|actually|basically|essentially|practically|i mean|you know|like|sort of|kind of)\\b"
+        replacement: ""
+      - pattern: "\\b(in my opinion|from my perspective|as far as i can tell|as i see it)\\b"
+        replacement: ""
+
+  collapse_phrases:
+    enabled: true
+    patterns:
+      - pattern: "\\b(utilize|utilise)\\b"
+        replacement: "use"
+      - pattern: "\\b(terminate|cease|discontinue)\\b"
+        replacement: "end"
+      - pattern: "\\b(assist with|aid in|help with)\\b"
+        replacement: "help"
+      - pattern: "\\b(in order to|so as to|for the purpose of)\\b"
+        replacement: "to"
+      - pattern: "\\b(due to|owing to|on account of|because of) the fact that\\b"
+        replacement: "because"
+      - pattern: "\\b(make|come to) a decision\\b"
+        replacement: "decide"
+      - pattern: "\\b(take|give) (into )?consideration\\b"
+        replacement: "consider"
+      - pattern: "\\b(at this point|at the present time|currently)\\b"
+        replacement: "now"
+      - pattern: "\\b(would like to|wish to|desire to)\\b"
+        replacement: "want to"
+      - pattern: "\\b(in terms of|with regard to|regarding|concerning)\\b"
+        replacement: "about"
+      - pattern: "\\b(the (way|manner) in which)\\b"
+        replacement: "how"
+      - pattern: "\\b(despite|in spite of) the fact that\\b"
+        replacement: "although"
+      - pattern: "\\b(in the event that|in case)\\b"
+        replacement: "if"
+      - pattern: "\\b(could|would|can) you (explain|tell me about|describe|share|show|help me understand)\\b"
+        replacement: "explain"
+      - pattern: "\\b(what is|tell me|describe) the (difference|distinction) between\\b"
+        replacement: "compare"
+      - pattern: "\\b(how does|in what way|by what means)\\b"
+        replacement: "how"
+      - pattern: "\\b(what are|list|name) the (benefits|advantages|pros)\\b"
+        replacement: "benefits of"
+      - pattern: "\\b(what are|list|name) the (drawbacks|disadvantages|cons)\\b"
+        replacement: "drawbacks of"
+
+  punctuation_compression:
+    enabled: true
+    patterns:
+      - pattern: "\\s*[,;]\\s*(?:and|or)\\s+"
+        replacement: " "
+      - pattern: "(?<!\\.)\\.\\.\\."
+        replacement: ""
+      - pattern: "\\s*[,;]\\s*(?=\\band\\b|\\bor\\b)"
+        replacement: " "
+      - pattern: "\\([^)]*\\)\\s*[,;]?"
+        replacement: ""
+      - pattern: "([.,!?])\\s*([.,!?])+"
+        replacement: "$1"
+      - pattern: "\\s+([.,!?])"
+        replacement: "$1"
+      - pattern: "([.,!?])\\s+"
+        replacement: "$1 "
+
+  sentence_compression:
+    enabled: true
+    patterns:
+      - pattern: "\\b(it is|there is|there are)\\s+(important|notable|worth noting|worth mentioning)\\s+that\\b"
+        replacement: ""
+      - pattern: "\\b(as you may know|as you might know|as you probably know)\\b"
+        replacement: ""
+      - pattern: "\\b(according to|based on|per)\\s+(research|studies|data|findings)\\b"
+        replacement: ""
+      - pattern: "\\b(in general|generally speaking|typically|usually)\\b"
+        replacement: ""
+      - pattern: "\\b(for example|for instance|such as|like)\\b"
+        replacement: "e.g."
+      - pattern: "\\b(that is|in other words|namely|specifically)\\b"
+        replacement: "i.e."
+
+  question_preservation:
+    enabled: true
+    patterns:
+      - pattern: "\\b(how|what|when|where|why|who|which)\\b"
+        replacement: "$1"
+      - pattern: "\\b(can|could|would|will|should|might|may)\\b"
+        replacement: "$1"
+      - pattern: "\\b(explain|describe|tell|show|help)\\b"
+        replacement: "$1"
+      - pattern: "\\b(compare|contrast|analyze|evaluate)\\b"
+        replacement: "$1"
+      - pattern: "\\b(benefits|advantages|pros|drawbacks|disadvantages|cons)\\b"
+        replacement: "$1"
+      - pattern: "\\b(impact|effect|influence|role)\\b"
+        replacement: "$1"
+      - pattern: "\\b(future|potential|possibilities|developments)\\b"
+        replacement: "$1"
+      - pattern: "\\b(current|present|existing|modern)\\b"
+        replacement: "$1"
+      - pattern: "\\b(technology|innovation|advancement|development)\\b"
+        replacement: "$1"
+      - pattern: "\\b(artificial intelligence|AI|machine learning|ML)\\b"
+        replacement: "$1"
+      - pattern: "\\b(blockchain|NFT|cryptocurrency|digital)\\b"
+        replacement: "$1"
+      - pattern: "\\b(healthcare|medical|wellness|well-being)\\b"
+        replacement: "$1"
+      - pattern: "\\b(creativity|art|design|innovation)\\b"
+        replacement: "$1"
+      - pattern: "\\b(privacy|security|safety|protection)\\b"
+        replacement: "$1"
+      - pattern: "\\b(access|availability|distribution|reach)\\b"
+        replacement: "$1"
+      - pattern: "\\b(transformation|change|evolution|development)\\b"
+        replacement: "$1"
+      - pattern: "\\b(application|implementation|use|utilization)\\b"
+        replacement: "$1"
+      - pattern: "\\b(consideration|aspect|factor|element)\\b"
+        replacement: "$1"
+      - pattern: "\\b(implication|consequence|result|outcome)\\b"
+        replacement: "$1"
+      - pattern: "\\b(integration|incorporation|adoption|implementation)\\b"
+        replacement: "$1"
+
+patterns:
+  # Remove redundant phrases
+  - pattern: "in order to"
+    replacement: "to"
+    flags: "i"
+  
+  - pattern: "that being said"
+    replacement: ""
+    flags: "i"
+  
+  - pattern: "as a matter of fact"
+    replacement: ""
+    flags: "i"
+  
+  - pattern: "in other words"
+    replacement: ""
+    flags: "i"
+
+  # Simplify common expressions
+  - pattern: "would like to"
+    replacement: "want to"
+    flags: "i"
+  
+  - pattern: "in terms of"
+    replacement: "about"
+    flags: "i"
+  
+  - pattern: "with regard to"
+    replacement: "about"
+    flags: "i"
+
+  # Remove unnecessary modifiers
+  - pattern: "\\b(very|really|quite|extremely|highly)\\s+"
+    replacement: ""
+    flags: "i"
+  
+  - pattern: "\\b(actually|basically|essentially|practically)\\s+"
+    replacement: ""
+    flags: "i"
+
+  # Collapse repeated words
+  - pattern: "\\b(\\w+)\\s+\\1\\b"
+    replacement: "$1"
+    flags: "i"
+
+  # Remove unnecessary punctuation
+  - pattern: "([.,!?])\\s*([.,!?])+"
+    replacement: "$1"
+    flags: "g"
+
+  # Standardize spacing around punctuation
+  - pattern: "\\s+([.,!?])"
+    replacement: "$1"
+    flags: "g"
+  
+  - pattern: "([.,!?])\\s+"
+    replacement: "$1 "
+    flags: "g"
+
+  # Remove unnecessary spaces
+  - pattern: "\\s+"
+    replacement: " "
+    flags: "g"
+  
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    flags: "g" 
